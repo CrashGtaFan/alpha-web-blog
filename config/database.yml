@@ -22,4 +22,7 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: alpha_web_blog_production
+  host: <%= ENV['DATABASE_URL'] %>
+  secret: <%= ENV['SECRET_KEY_BASE'] %>
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
