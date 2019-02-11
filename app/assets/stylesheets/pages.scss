@@ -1,0 +1,10 @@
+.homepage_image{
+  max-width: 800px;
+  height: 400px;
+}
+@media screen and (max-width: 800px) {
+  .homepage_image{
+    max-width: 300px;
+    height: 200px;
+  }
+}
