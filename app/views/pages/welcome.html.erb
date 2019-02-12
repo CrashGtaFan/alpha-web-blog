@@ -11,3 +11,17 @@
     </div>
   </div>
 </center>
+<div class='row'>
+  <div class="col-sm">
+    <h3>Last news:</h3>
+    <% @last_articles.each do |article| %>
+      <div class="card w-75">
+        <div class="card-body">
+          <h5 class="card-title"><%= article.title %></h5>
+          <p class="card-text"><%= article.description %></p>
+          <%= link_to 'Read more', article_path(article), class: 'btn btn-outline-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

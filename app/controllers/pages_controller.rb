@@ -3,5 +3,6 @@ class PagesController < ApplicationController
   end
 
   def welcome
+    @last_articles = Article.last(5)
   end
 end
