@@ -1,20 +1,7 @@
-<center>
-  <h1>Welcome to my alpha web blog</h1>
-  <div class='row'>
-    <div class="col-sm">
-      <p>All features will be in some time</p>
-    </div>
-  </div>
-  <div class='row'>
-    <div class="col-sm">
-      <%= image_tag 'family_guy_brian_griffin_dog_newspaper.jpg', class: 'homepage_image' %>
-    </div>
-  </div>
-</center>
 <div class='row'>
   <div class="col-sm">
     <h3>Last news:</h3>
-    <% @last_articles.each do |article| %>
+    <% @articles.each do |article| %>
       <div class="card w-75 mb-3">
         <div class="card-body">
           <h5 class="card-title"><%= article.title %></h5>

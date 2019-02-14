@@ -1,6 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :article_resource, only: %i[show edit update destroy]
 
+  def index
+    @articles = Article.order(id: :desc)
+  end
+
   def new
     @article = Article.new
   end
