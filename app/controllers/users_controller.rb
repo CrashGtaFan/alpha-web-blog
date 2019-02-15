@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :user_resource, only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -13,7 +15,20 @@ class UsersController < ApplicationController
     end
   end
   
+  def update
+    if @user.update(user_params)
+      flash[:success] = 'Your profile was succesifully updated!'
+      redirect_to articles_path
+    else
+      render 'edit'
+    end
+  end
+  
   private
+  
+  def user_resource
+    @user = User.find(params[:id])
+  end
   
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
