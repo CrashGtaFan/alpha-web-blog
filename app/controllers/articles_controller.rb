@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :article_resource, only: %i[show edit update destroy]
 
   def index
-    @articles = Article.order(id: :desc)
+    @articles = Article.paginate(page: params[:page], per_page: 10).order(id: :desc)
   end
 
   def new

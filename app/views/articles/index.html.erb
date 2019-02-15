@@ -1,6 +1,16 @@
+<h3 align='center'>All news</h3>
+<div class='row'>
+  <div class="col-sm offset-sm-5">
+    <%= will_paginate %>
+  </div>
+</div>
 <div class='row'>
   <div class="col-sm">
-    <h3>All news:</h3>
     <%= render @articles %>
+  </div>
+</div>
+<div class='row'>
+  <div class="col-sm offset-sm-5">
+    <%= will_paginate %>
   </div>
 </div>

@@ -5,4 +5,14 @@
   </div>
 </div>
 <h4 align="center"><%= @user.username %>'s articles</h4>
-<%= render @user.articles %>
+<div class='row'>
+  <div class="col-sm offset-sm-5">
+    <%= will_paginate @user_articles %>
+  </div>
+</div>
+<%= render @user_articles %>
+<div class='row'>
+  <div class="col-sm offset-sm-5">
+    <%= will_paginate @user_articles %>
+  </div>
+</div>
