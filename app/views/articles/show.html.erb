@@ -5,20 +5,42 @@
         <h1><%= @article.title %></h1>
       </div>
       <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <%= @article.description %>
-          <footer>
-            <%= "Created by: #{@article.user.username},
-             #{time_ago_in_words(@article.created_at)} ago;
-             last updated #{time_ago_in_words(@article.updated_at)}" %>
-            <br>
-            <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-outline-warning' %>
-            <%= link_to 'Destroy the article', article_path(@article), method: :delete,
-                                       class: 'btn btn-outline-danger',
-                                       data: { confirm: 'Are you sure to wanna delete that article?' } %>
-            <%= link_to "Back to articles listing", articles_path, class: 'btn btn-outline-info' %>
-          </footer>
-        </blockquote>
+        <div clas='row'>
+          <% if @article.user %>
+            <ul class="listing">
+              <div class="row center">
+                <div class="col-md-4 offset-md-4">
+                  <li>Created by:</li>
+                  <li><%= link_to gravatar_for(@article.user), user_path(@article.user) %></li>
+                  <li class="article-title">
+                    <%= link_to @article.user.username, user_path(@article.user) %>
+                  </li>
+                  <li>
+                    <small>
+                      <%= pluralize(@article.user.articles.count, "article") if @article.user.articles %>
+                    </small>
+                  </li>
+                </div>
+              </div>
+            </ul>
+          <% end %>
+        </div>
+        <div class='row'>
+          <blockquote class="blockquote mb-1">
+            <%= @article.description %>
+            <footer>
+              <%= "Created by: #{@article.user.username},
+               #{time_ago_in_words(@article.created_at)} ago;
+               last updated #{time_ago_in_words(@article.updated_at)}" %>
+              <br>
+              <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-outline-warning' %>
+              <%= link_to 'Destroy the article', article_path(@article), method: :delete,
+                                         class: 'btn btn-outline-danger',
+                                         data: { confirm: 'Are you sure to wanna delete that article?' } %>
+              <%= link_to "Back to articles listing", articles_path, class: 'btn btn-outline-info' %>
+            </footer>
+          </blockquote>
+        </div>
       </div>
     </div>
   </div>

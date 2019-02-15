@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :user_resource, only: [:edit, :update]
+  before_action :user_resource, only: [:show, :edit, :update]
+  
+  def index
+    @users = User.all
+  end
 
   def new
     @user = User.new
