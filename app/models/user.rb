@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
                        length: { minimum: 6, maximum: 25 }
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     length: { maximum: 60 }, format: { with: VALID_EMAIL_REGEX }
-  enum role: [:user, :moderator, :admin]
+  enum role: [:writer, :moderator, :admin]
 end

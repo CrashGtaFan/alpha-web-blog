@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :article_resource, only: %i[show edit update destroy]
+  before_action :require_user, except: %i[index show]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 10).order(id: :desc)
@@ -10,7 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
     if @article.save
       flash[:success] = "Article #{@article.title} was successuful created!"
       redirect_to article_path(@article)
@@ -42,5 +44,12 @@ class ArticlesController < ApplicationController
 
   def article_resource
     @article = Article.find(params[:id])
+  end
+  
+  def require_same_user
+    if current_user != @article.user && current_user.writer?
+      flash[:danger] = 'You can only edit of delete only own your articles'
+      redirect_to root_path
+    end
   end
 end

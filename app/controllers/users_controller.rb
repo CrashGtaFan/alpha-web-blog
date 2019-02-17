@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :user_resource, only: [:show, :edit, :update]
+  before_action :user_resource, only: %i[show edit update]
+  before_action :require_user, except: %i[new index show]
+  before_action :require_same_user, only: %i[edit update]
   
   def index
     @users = User.paginate(page: params[:page], per_page: 10).order(id: :desc)
@@ -40,5 +42,12 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
+  
+  def require_same_user
+    if current_user != @user
+      flash[:danger] = 'You can edit only own your profile'
+      redirect_to root_path
+    end
   end
 end
