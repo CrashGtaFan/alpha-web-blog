@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   root to: 'pages#welcome'
   resources :articles
   resources :users, except: [:new]
+  resources :categories, except: [:destroy]
 end

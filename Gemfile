@@ -22,6 +22,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
+  gem 'rails-controller-testing'
   gem 'pry-rails'
 end
 
