@@ -3,7 +3,7 @@
   <% @categories.each do |category| %>
     <ul class="listing">
       <div class="row">
-        <div class="card col-md-4 offset-md-4">
+        <div class="card col-md-4 offset-md-4 col-sm-12">
           <li class="article-title">
             <%= link_to "#{category.name}", category_path(category) %>
           </li>
@@ -11,5 +11,9 @@
       </div>
     </ul>
   <% end %>
-  <%= will_paginate %>
+  <div class="col-md-4 offset-md-2 col-sm-12">
+    <center>
+      <%= will_paginate %>
+    </center>
+  </div>
 </div>
