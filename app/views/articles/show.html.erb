@@ -27,6 +27,10 @@
         </div>
         <div class='row'>
           <blockquote class="blockquote mb-1">
+            <% if @article.categories.any? %>
+              <p>Categories: <%= render @article.categories %></p>
+            <% end %>
+            <br>
             <%= @article.description %>
             <footer>
               <%= "Created by: #{@article.user.username},
